@@ -67,6 +67,99 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
     // TODO - Make buttons functional
+
+    errorBtns[0].addEventListener('click', () => {
+      console.log("console.log demo");
+    });
+
+    errorBtns[1].addEventListener('click', () => {
+      console.error("console.error demo");
+    });
+
+    errorBtns[2].addEventListener('click', () => {
+      console.dir(errorBtns[0]);
+    });
+
+    errorBtns[3].addEventListener('click', () => {
+      console.dirxml(document.body);
+    });
+
+    errorBtns[4].addEventListener('click', () => {
+      console.group("log group");
+    })
+    
+    errorBtns[5].addEventListener('click', () => {
+      console.groupEnd("log group");
+    });
+
+    let courses = [
+      {
+        name: 'Computer Science',
+        ID: 110
+      },
+      {
+        name: 'Algorithms',
+        ID: 101
+      },
+      {
+        name: 'Circuits',
+        ID: 141
+      }
+    ];
+    errorBtns[6].addEventListener('click', () => {
+      console.table(courses);
+    });
+
+    errorBtns[7].addEventListener('click', () => {
+      console.time('timer');
+      console.log('Started a timer!');
+    });
+
+    errorBtns[8].addEventListener('click', () => {
+      console.timeEnd('timer');
+      console.log('Ended timer!')
+    });
+
+    errorBtns[9].addEventListener('click', () => {
+      const first = () => {
+        second();
+      };
+      const second = () => {
+        console.trace();
+      };
+      first();
+    });
+
+    errorBtns[10].addEventListener('click', () => {
+      try {
+        errorBtns[11].addEventListener('click', () => {
+          console.log('out of bounds');
+        });
+
+      } catch (e) {
+        console.error('Error: ', e);
+      } finally {
+        try {
+          let err = Error('Testing');
+          throw err;
+        } catch (e) {
+          console.error('Error: ', e);
+        };
+      };
+    });
+
+    class ReadError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "ReadError"
+      }
+    }
+
+    function checkReadable(readID, source) {
+      if (readID > source.length()) {
+        throw new ReadError('Read ID out of bounds');
+      }
+    }
   </script>
 </body>
 </html>
